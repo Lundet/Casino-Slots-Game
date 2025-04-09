@@ -1,0 +1,94 @@
+/* slotgame.css */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full height of the viewport */
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  background-color: #f0f0f0; /* Optional: Set a background color */
+}
+
+.app {
+  background-color: #121212; /* Dark gray background */
+  color: #ffffff; /* White text for visibility */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif; /* Optional: Set a clean font */
+  box-sizing: border-box; /* Include padding in width/height calculations */
+  padding: 20px; /* Optional: Add padding around the content */
+}
+
+.slot-machine {
+  text-align: center;
+  font-size: 2rem;
+  width: 90%; /* Take up 90% of the available width */
+  max-width: 1200px; /* Optional: Limit the maximum width */
+  margin: 0 auto; /* Center the slot machine horizontally */
+}
+
+.reels {
+  display: flex;
+  justify-content: center;
+  gap: 0; /* Removed gap to reduce whitespace */
+  margin-bottom: 30px;
+}
+
+.reel {
+  margin: 2rem;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 3rem;
+  width: 200px; /* Adjust width to accommodate the images without extra space */
+  height: 200px; /* Adjust height to accommodate the images without extra space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  overflow: hidden; /* Ensure images don't overflow */
+}
+
+.symbol-image {
+  width: 100%; /* Ensure image takes the full width of the reel */
+  height: 100%; /* Ensure image takes the full height of the reel */
+  object-fit: cover; /* Ensure image fills the space without stretching */
+  display: block; /* Remove extra space below image */
+}
+
+/* ...existing code... */
+.spin-button {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.spin-button:hover {
+  background-color: #0056b3;
+}
+
+/* slotgame.css */
+.win-message {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: green;
+  font-weight: bold;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}

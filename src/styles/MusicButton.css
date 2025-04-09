@@ -1,0 +1,22 @@
+/* Style for the MusicButton */
+.music-button {
+    background-color: #ffcc00; /* Bright yellow for visibility */
+    color: #000; /* Black text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .music-button:hover {
+    background-color: #ff9900; /* Darker yellow on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  .music-button:active {
+    background-color: #cc7a00; /* Even darker yellow when clicked */
+    transform: scale(0.95); /* Slightly shrink on click */
+  }
