@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Slotgame.css';
+import '../styles/SlotGame.css';
 import SpinButton from './SpinButton';
 
 // Import images (JPG format)
@@ -63,6 +63,7 @@ const SlotMachine = () => {
     const checkWin = (newReels) => {
         let message = 'You lose!';
         let win = false;
+        
 
         // Check if two adjacent symbols are the same
         if (newReels[0] === newReels[1] || newReels[1] === newReels[2]) {
