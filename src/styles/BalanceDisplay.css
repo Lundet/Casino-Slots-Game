@@ -1,42 +1,46 @@
+/* BalanceDisplay.css */
+
 .balance-display {
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 1.2em;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .balance {
-    margin-bottom: 10px;
-    font-size: 1.5em;
-    color: #333;
-  }
-  
-  .bet-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .bet-controls button {
-    font-size: 1.2em;
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .bet-controls button:hover {
-    background-color: #45a049;
-  }
-  
-  .bet-controls span {
-    font-size: 1.3em;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff; /* Changed to white for better visibility */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly more prominent shadow */
+  width: 250px; /* Increased width for better fit */
+  color: #333; /* Ensures the text is readable */
+}
+
+.balance {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.bet-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the buttons and bet text */
+}
+
+.bet-btn {
+  padding: 6px 12px;
+  font-size: 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bet-btn:hover {
+  background-color: #0056b3;
+}
+
+.bet-controls span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}

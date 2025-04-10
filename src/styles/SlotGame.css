@@ -29,6 +29,10 @@ body {
   width: 90%; /* Take up 90% of the available width */
   max-width: 1200px; /* Optional: Limit the maximum width */
   margin: 0 auto; /* Center the slot machine horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .reels {
@@ -39,7 +43,8 @@ body {
 }
 
 .reel {
-  margin: 2rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
   border: 2px solid #000;
   border-radius: 8px;
   font-size: 3rem;
@@ -59,7 +64,25 @@ body {
   display: block; /* Remove extra space below image */
 }
 
-/* ...existing code... */
+/* Layout for the controls (SpinButton and BalanceDisplay) */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Adjust space between button and balance display */
+  margin-top: 20px;
+}
+
+.balance-display {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .spin-button {
   padding: 10px 20px;
   font-size: 1.5rem;
@@ -68,32 +91,14 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .spin-button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
+  transition: transform 0.3s;
 }
 
-/* slotgame.css */
-.win-message {
-  margin-top: 20px;
-  font-size: 1.5rem;
-  color: green;
-  font-weight: bold;
-  animation: fadeIn 1s ease;
-}
-.win-message.lose {
-  color: red;
-}
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
-}
 /* Add spinning effect for the reels */
 .spinning {
   animation: reel-spin 0.1s linear infinite;
@@ -110,16 +115,10 @@ body {
     transform: rotateX(720deg);
   }
 }
+
 /* Change border color on win */
 .reel.win {
   border-color: gold; /* Gold border on win */
-}
-
-/* Spin button hover effect */
-.spin-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05); /* Slightly enlarge button on hover */
-  transition: transform 0.3s;
 }
 
 /* Styling for win message */
@@ -128,7 +127,6 @@ body {
   font-size: 1.5rem;
   color: green;
   font-weight: bold;
-  animation: fadeIn 1s ease;
 }
 
 .win-message.lose {
@@ -142,4 +140,8 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.rtp {
+  margin-top: 10px;
 }

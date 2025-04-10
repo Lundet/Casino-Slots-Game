@@ -1,22 +1,25 @@
 // src/App.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import SlotMachine from './components/SlotMachine';
 import MusicButton from './components/MusicButton';
 import SymbolsInfo from './components/SymbolsInfo';
 import './styles/slotgame.css'; // Import your styles here
-import BalanceDisplay from './components/balancedisplay';
+import BalanceDisplay from './components/BalanceDisplay';
 
 const App = () => {
-    return (
-        <div className="app">
-        <h1>Casino Slots Game</h1>
+  // Initialize balance and bet states
+  const [balance, setBalance] = useState(100); // Starting balance
+  const [bet, setBet] = useState(1); // Starting bet amount
 
-        <SymbolsInfo /> {/* SymbolsInfo component */}
-        <MusicButton /> {/* MusicButton placed here */}
-        <SlotMachine /> {/* SlotMachine component */}
-        <BalanceDisplay /> {/* BalanceDisplay component */}
-      </div>
-    );
+  return (
+    <div className="app">
+      <h1>Casino Slots Game</h1>
+
+      <SymbolsInfo /> {/* SymbolsInfo component */}
+      <MusicButton /> {/* MusicButton placed here */}
+      <SlotMachine balance={balance} setBalance={setBalance} bet={bet} /> {/* SlotMachine component */}
+    </div>
+  );
 };
 
 export default App;
