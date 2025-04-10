@@ -11,9 +11,9 @@
 - [ ] **Add Animations**:
   - Smooth animations for spinning reels.
   - Add a "glow" effect or particle animation for wins.
-  - Animate the "You win!" or "You lose!" message (e.g., fade-in, bounce).
+  -X Animate the "You win!" or "You lose!" message (e.g., fade-in, bounce).
 - [ ] **Add Sounds**:
-  - Use the "Age of War" song as background music.
+  -X Use the "Age of War" song as background music.
   - Add sound effects for spinning, winning, and losing.
   - Include a toggle button to mute/unmute sounds.
 - [ ] **Add a icon explainer**:

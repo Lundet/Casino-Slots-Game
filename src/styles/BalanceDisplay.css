@@ -1,0 +1,42 @@
+.balance-display {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .balance {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .bet-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .bet-controls button {
+    font-size: 1.2em;
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .bet-controls button:hover {
+    background-color: #45a049;
+  }
+  
+  .bet-controls span {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+  
