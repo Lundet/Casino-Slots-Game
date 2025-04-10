@@ -22,34 +22,36 @@ const images = {
 };
 
 const symbolPayouts = {
-    arrow: [0, 0, 2, 5, 10, 20],
-    silvercoin: [0, 0, 2, 5, 10, 20],
-    wall: [0, 0, 5, 10, 15, 30],
-    shield: [0, 0, 3, 6, 12, 25],
-    spearman: [0, 0, 10, 20, 30, 50],
-    archer: [0, 0, 10, 20, 30, 50],
-    knight: [0, 0, 15, 25, 40, 60],
-    mage: [0, 0, 15, 25, 40, 60],
-    dragon: [0, 0, 20, 40, 60, 80],
-    king: [0, 0, 25, 50, 75, 100],
-    wild: [0, 0, 30, 60, 90, 120],
+    arrow: [0, 0, 2, 4, 8, 12],       // Upped 10 → 12
+    silvercoin: [0, 0, 2, 4, 8, 12],  // Upped 10 → 12
+    wall: [0, 0, 4, 8, 12, 20],       // Upped 15 → 20
+    shield: [0, 0, 3, 5, 10, 15],     // Upped 12 → 15
+    spearman: [0, 0, 6, 12, 20, 35],  // Upped 30 → 35
+    archer: [0, 0, 6, 12, 20, 35],    // Upped 30 → 35
+    knight: [0, 0, 10, 15, 30, 60],   // Upped 55 → 60
+    mage: [0, 0, 10, 15, 30, 60],     // Upped 55 → 60
+    dragon: [0, 0, 12, 25, 45, 90],   // Upped 80 → 90
+    king: [0, 0, 15, 30, 80, 120],    // Upped 110 → 120
+    wild: [0, 0, 20, 40, 65, 90],     // Upped 80 → 90
     bonus: [0, 0, 10, 20, 30, 40],
 };
 
+
 const symbolProbabilities = {
-    arrow: 10,
-    silvercoin: 10,
+    arrow: 15,
+    silvercoin: 15,
     wall: 15,
-    shield: 10,
+    shield: 15,
     spearman: 10,
-    archer: 10,
-    bonus: 5,
-    wild: 3,  // Corrected from 75
-    knight: 8,
-    mage: 7,
+    archer: 8,
+    knight: 7,
+    mage: 6,
     dragon: 5,
-    king: 5,
+    king: 4,
+    bonus: 8,  // ~1 in 109 spins
+    wild: 4,    // Upped from 3 to 4 (3.7%)
 };
+
 
 const totalWeight = Object.values(symbolProbabilities).reduce((a, b) => a + b, 0); // 80
 
