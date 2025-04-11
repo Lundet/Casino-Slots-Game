@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import SlotMachine from './components/SlotMachine';
 import MusicButton from './components/MusicButton';
 import SymbolsInfo from './components/SymbolsInfo';
-import './styles/slotgame.css'; // Import your styles here
+import './styles/SlotGame.css'; // Import your styles here
 import BalanceDisplay from './components/BalanceDisplay';
 
 const App = () => {
