@@ -24,7 +24,7 @@ export const symbolProbabilities = {
     knight: 7,
     mage: 6,
     dragon: 6,
-    king: 5,
-    bonus: 50,
-    wild: 50,
+    king: 4,
+    bonus: 10,
+    wild: 3,
 };
