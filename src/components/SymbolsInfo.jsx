@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/SymbolsInfo.css';
 
-import { symbolPayouts, symbolProbabilities } from './symbols';
+import { symbolPayouts, symbolProbabilities } from './Symbols';
 
 // Import images
 import coinImg from '../assets/images/silvercoin.jpg';
