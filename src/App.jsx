@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Casino Slots Game</h1>
+      <h1>Casino Slots Game(IN PROGRESS)</h1>
 
       <SymbolsInfo /> {/* SymbolsInfo component */}
       <MusicButton /> {/* MusicButton placed here */}
