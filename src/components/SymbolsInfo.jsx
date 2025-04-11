@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/symbolsInfo.css';
+import '../styles/SymbolsInfo.css';
 
 import { symbolPayouts, symbolProbabilities } from './symbols';
 
