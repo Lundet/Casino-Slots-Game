@@ -1,6 +1,6 @@
 // src/gameLogic.js
 
-import { symbolPayouts, symbolProbabilities } from './symbols'; // Correct import from symbols.js
+import { symbolPayouts, symbolProbabilities } from './Symbols'; // Correct import from symbols.js
 
 const totalWeight = Object.values(symbolProbabilities).reduce((a, b) => a + b, 0);
 
