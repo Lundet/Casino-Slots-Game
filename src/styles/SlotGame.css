@@ -99,9 +99,10 @@ body {
   transition: transform 0.3s;
 }
 
-/* Add spinning effect for the reels */
+/* Add slow spinning effect for the reels */
+
 .spinning {
-  animation: reel-spin 0.1s linear infinite;
+  animation: reel-spin 0.5s linear infinite;
 }
 
 @keyframes reel-spin {

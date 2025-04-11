@@ -115,7 +115,7 @@ const SlotMachine = () => {
             }
             totalPayout += freeSpinPayout;
             win = true;
-            message += ` + Free Spins! (${bonusCount} bonus symbols, +${freeSpinPayout} payout)`;
+            message = ` + 10 Free Spins! (${bonusCount} bonus symbols, +${freeSpinPayout} payout)`;
             setFreeSpins(10);  // Set the free spins to 10
         }
 
