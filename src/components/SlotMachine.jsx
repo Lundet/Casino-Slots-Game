@@ -131,6 +131,7 @@ const SlotMachine = () => {
 
     return (
         <div className="slot-machine">
+            {winMessage && <div className={`win-message ${isWin ? 'win' : 'lose'}`}>{winMessage}</div>}
             <div className="free-spins-counter">
                 {freeSpins > 0 ? <p>Free Spins: {freeSpins}</p> : <p>No Free Spins Left</p>}
             </div>
@@ -147,7 +148,7 @@ const SlotMachine = () => {
                 <SpinButton onClick={spinReels} disabled={isSpinning || balance < bet && freeSpins === 0} />
                 <BalanceDisplay balance={balance} bet={bet} setBet={setBet} />
             </div>
-            {winMessage && <div className={`win-message ${isWin ? 'win' : 'lose'}`}>{winMessage}</div>}
+           
             <button onClick={runSimulation} disabled={isSpinning}>
                 Simulate 1,000,000 Spins
             </button>

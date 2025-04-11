@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/symbolsInfo.css';
 
+import { symbolPayouts, symbolProbabilities } from './symbols';
+
 // Import images
 import coinImg from '../assets/images/silvercoin.jpg';
 import shieldImg from '../assets/images/shield.jpg';
@@ -14,6 +16,27 @@ import dragonImg from '../assets/images/dragon.jpg';
 import kingImg from '../assets/images/king.jpg';
 import crystalBallImg from '../assets/images/wild.jpg';
 import treasureChestImg from '../assets/images/bonus.jpg';
+
+const symbolGroups = {
+  bad: [
+    { key: 'silvercoin', img: coinImg, name: 'Coin', desc: 'Low-tier' },
+    { key: 'shield', img: shieldImg, name: 'Shield', desc: 'Low-tier' },
+    { key: 'arrow', img: arrowImg, name: 'Arrow', desc: 'Low-tier' },
+    { key: 'wall', img: wallImg, name: 'Wall', desc: 'Low-tier' },
+  ],
+  medium: [
+    { key: 'spearman', img: spearmanImg, name: 'Spearman', desc: 'Fighter' },
+    { key: 'archer', img: archerImg, name: 'Archer', desc: 'Fighter' },
+    { key: 'knight', img: knightImg, name: 'Knight', desc: 'Fighter' },
+    { key: 'mage', img: mageImg, name: 'Mage', desc: 'Fighter' },
+  ],
+  special: [
+    { key: 'dragon', img: dragonImg, name: 'Dragon', desc: 'High-tier (Special)' },
+    { key: 'king', img: kingImg, name: 'King', desc: 'High-tier (Special)' },
+    { key: 'wild', img: crystalBallImg, name: 'Crystal Ball', desc: 'Wild - Replaces any symbol' },
+    { key: 'bonus', img: treasureChestImg, name: 'Treasure Chest', desc: 'Bonus - Triggers rewards' },
+  ],
+};
 
 const SymbolsInfo = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -33,30 +56,45 @@ const SymbolsInfo = () => {
             <div className="symbol-section">
               <h3>🔴 Bad Tier</h3>
               <div className="symbol-group">
-                <SymbolCard img={coinImg} name="Coin" desc="Low-tier" value="+2 coins" />
-                <SymbolCard img={shieldImg} name="Shield" desc="Low-tier" value="+3 coins" />
-                <SymbolCard img={arrowImg} name="Arrow" desc="Low-tier" value="+2 coins" />
-                <SymbolCard img={wallImg} name="Wall" desc="Low-tier" value="+4 coins" />
+                {symbolGroups.bad.map(sym => (
+                  <SymbolCard
+                    key={sym.key}
+                    img={sym.img}
+                    name={sym.name}
+                    desc={sym.desc}
+                    payouts={symbolPayouts[sym.key]}
+                  />
+                ))}
               </div>
             </div>
 
             <div className="symbol-section">
               <h3>🟡 Medium Tier</h3>
               <div className="symbol-group">
-                <SymbolCard img={spearmanImg} name="Spearman" desc="Fighter" value="+6 coins" />
-                <SymbolCard img={archerImg} name="Archer" desc="Fighter" value="+6 coins" />
-                <SymbolCard img={knightImg} name="Knight" desc="Fighter" value="+7 coins" />
-                <SymbolCard img={mageImg} name="Mage" desc="Fighter" value="+7 coins" />
+                {symbolGroups.medium.map(sym => (
+                  <SymbolCard
+                    key={sym.key}
+                    img={sym.img}
+                    name={sym.name}
+                    desc={sym.desc}
+                    payouts={symbolPayouts[sym.key]}
+                  />
+                ))}
               </div>
             </div>
 
             <div className="symbol-section">
               <h3>🟣 Special Tier</h3>
               <div className="symbol-group">
-                <SymbolCard img={dragonImg} name="Dragon" desc="High-tier (Special)" value="+12 coins" />
-                <SymbolCard img={kingImg} name="King" desc="High-tier (Special)" value="+15 coins" />
-                <SymbolCard img={crystalBallImg} name="Crystal Ball" desc="Wild - Replaces any symbol" />
-                <SymbolCard img={treasureChestImg} name="Treasure Chest" desc="Bonus - Triggers rewards" />
+                {symbolGroups.special.map(sym => (
+                  <SymbolCard
+                    key={sym.key}
+                    img={sym.img}
+                    name={sym.name}
+                    desc={sym.desc}
+                    payouts={symbolPayouts[sym.key]}
+                  />
+                ))}
               </div>
             </div>
 
@@ -68,12 +106,42 @@ const SymbolsInfo = () => {
   );
 };
 
-const SymbolCard = ({ img, name, desc, value }) => (
+const SymbolCard = ({ img, name, desc, payouts }) => (
   <div className="symbol-card">
     <img src={img} alt={name} />
     <h4>{name}</h4>
     <p>{desc}</p>
-    {value && <p className="price">{value}</p>}
+
+    {payouts && (
+      <div className="payout-lines">
+        <h5>Payout</h5>
+        {payouts.map((value, index) => {
+          const matchCount = index ; // matchCount corresponds to 1, 2, 3, etc.
+          if (matchCount >= 2 && value > 0) {
+            return (
+              <div
+                key={matchCount}
+                className="symbol-line"
+                style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}
+              >
+                <div className="symbol-images" style={{ display: 'flex', marginRight: '8px' }}>
+                  {Array(matchCount).fill().map((_, i) => (
+                    <img
+                      key={i}
+                      src={img}
+                      alt={name}
+                      style={{ width: '20px', height: '20px', marginRight: '2px' }}
+                    />
+                  ))}
+                </div>
+                <span>x{value}</span>
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+    )}
   </div>
 );
 

@@ -9,8 +9,8 @@ export const symbolPayouts = {
     knight: [0, 0, 10, 15, 30, 250],
     mage: [0, 0, 10, 15, 30, 500],
     dragon: [0, 0, 12, 25, 45, 750],
-    king: [0, 0, 15, 100, 500, 1000],
-    wild: [0, 0, 20, 100, 500, 1000],
+    king: [0, 0, 15, 50, 500, 1000],
+    wild: [0, 0, 20, 50, 500, 1000],
     bonus: [0, 0, 10, 20, 30, 40],
 };
 
@@ -25,6 +25,6 @@ export const symbolProbabilities = {
     mage: 6,
     dragon: 6,
     king: 5,
-    bonus: 9,
-    wild: 3,
+    bonus: 50,
+    wild: 50,
 };
