@@ -1,3 +1,4 @@
+// No need for return here, direct export works
 export const symbolPayouts = {
     arrow: [0, 0, 2, 4, 8, 12],
     silvercoin: [0, 0, 2, 4, 8, 12],

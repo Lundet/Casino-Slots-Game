@@ -5,6 +5,8 @@ import BalanceDisplay from './BalanceDisplay';
 import { simulateSpins } from './Simulation';
 import { getRandomSymbol, isMatchOrWild } from './GameLogic';
 import { symbolPayouts } from './Symbols';  // Assuming this is where symbolPayouts is defined
+import { sounds, playSound } from './Sounds';
+
 
 import arrow from '../assets/images/arrow.jpg';
 import silvercoin from '../assets/images/silvercoin.jpg';
@@ -83,6 +85,10 @@ const SlotMachine = () => {
             totalPayout += symbolPayouts[symbol][count] * bet;
             win = true;
             message = `You win! ${count} ${symbol} symbols in a row! Payout: ${totalPayout}`;
+            // Play the winning sound for the symbol
+        if (sounds[symbol]) {
+            playSound(sounds[symbol]);  // Pass the array of sounds corresponding to the symbol
+        }
         }
 
         const bonusCount = newReels.filter(s => s === 'bonus').length;
@@ -104,6 +110,7 @@ const SlotMachine = () => {
                 }
                 if (freeCount >= 2) {
                     freeSpinPayout += symbolPayouts[freeSymbol][freeCount] * bet;
+                    playSound(sounds[symbol]);  // Play sound for the winning symbol
                 }
             }
             totalPayout += freeSpinPayout;
@@ -112,7 +119,7 @@ const SlotMachine = () => {
             setFreeSpins(10);  // Set the free spins to 10
         }
 
-        setBalance(prev => Math.min(prev + totalPayout, 1000));
+        setBalance(prev => Math.min(prev + totalPayout, 100000));
         setWinMessage(win ? message : 'No win, try again!');
         setIsWin(win);
     };
