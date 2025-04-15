@@ -23,7 +23,7 @@ export const symbolPayouts = {
     mage: 6,
     dragon: 6,
     king: 4,
-    bonus: 50,
+    bonus: 10,
     wild: 3,
 };
 
