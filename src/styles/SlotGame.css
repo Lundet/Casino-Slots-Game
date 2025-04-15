@@ -99,23 +99,31 @@ body {
   transition: transform 0.3s;
 }
 
-/* Add slow spinning effect for the reels */
+.symbol {
+  transition: transform 0.5s ease-in-out;
+}
 
-.spinning {
+.symbol.spinning {
   animation: reel-spin 0.5s linear infinite;
 }
 
 @keyframes reel-spin {
   0% {
-    transform: rotateX(0deg);
+      transform: rotateX(0deg);
   }
   50% {
-    transform: rotateX(360deg);
+      transform: rotateX(360deg);
   }
   100% {
-    transform: rotateX(720deg);
+      transform: rotateX(720deg);
   }
 }
+
+.reel {
+  perspective: 1000px;
+}
+
+
 
 /* Change border color on win */
 .reel.win {

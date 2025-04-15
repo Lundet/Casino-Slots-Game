@@ -6,6 +6,7 @@ import { simulateSpins } from './Simulation';
 import { getRandomSymbol, isMatchOrWild } from './GameLogic';
 import { symbolPayouts } from './Symbols';  // Assuming this is where symbolPayouts is defined
 import { sounds, playSound } from './Sounds';
+import Reel from './Reel';  // Assuming this is where the Reel component is defined
 
 
 import arrow from '../assets/images/arrow.jpg';
@@ -69,8 +70,10 @@ const SlotMachine = () => {
         let win = false;
         let totalPayout = 0;
         let symbol = newReels[0];
+        //if symbol is wild act like a joker
+
         if (symbol === 'wild') {
-            symbol = newReels.slice(1).find(s => s !== 'wild' && s !== 'bonus') || 'wild';
+            symbol = newReels.slice(1).find(s => s !== 'wild') || 'wild';
         }
         let count = 0;
         for (let i = 0; i < 5; i++) {
@@ -85,14 +88,17 @@ const SlotMachine = () => {
             totalPayout += symbolPayouts[symbol][count] * bet;
             win = true;
             message = `You win! ${count} ${symbol} symbols in a row! Payout: ${totalPayout}`;
-            // Play the winning sound for the symbol
-        if (sounds[symbol]) {
-            playSound(sounds[symbol]);  // Pass the array of sounds corresponding to the symbol
-        }
+            // Play the winning sound for the symbol except for wild and bonus
+            if (symbol !== 'wild' && symbol !== 'bonus') {
+                if (sounds[symbol]) {
+                    playSound(sounds[symbol]);  // Pass the array of sounds corresponding to the symbol
+                }
+            }
         }
 
         const bonusCount = newReels.filter(s => s === 'bonus').length;
         if (bonusCount >= 3) {
+            playSound(sounds['bonus']);  // Play bonus sound
             let freeSpinPayout = 0;
             for (let i = 0; i < 10; i++) {  // Only run 10 free spins
                 const freeReels = Array(5).fill().map(getRandomSymbol);
@@ -137,18 +143,20 @@ const SlotMachine = () => {
             </div>
             <div className="reels">
                 {reels.map((symbol, index) => (
-                    <div key={index} className="reel">
-                        <div className={`symbol ${isSpinning ? 'spinning' : ''}`}>
-                            <img src={images[symbol]} alt={symbol} className="symbol-image" />
-                        </div>
-                    </div>
+                    <Reel
+                        key={index}
+                        symbol={symbol}
+                        isSpinning={isSpinning}
+                        image={images[symbol]}
+                    />
                 ))}
             </div>
+
             <div className="controls">
                 <SpinButton onClick={spinReels} disabled={isSpinning || balance < bet && freeSpins === 0} />
                 <BalanceDisplay balance={balance} bet={bet} setBet={setBet} />
             </div>
-           
+
             <button onClick={runSimulation} disabled={isSpinning}>
                 Simulate 1,000,000 Spins
             </button>
@@ -157,7 +165,7 @@ const SlotMachine = () => {
                     <p>Simulated RTP (1,000,000 spins): {simulatedRTP.toFixed(2)}%</p>
                 </div>
             )}
-            
+
         </div>
     );
 };
