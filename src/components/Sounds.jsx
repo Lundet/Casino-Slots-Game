@@ -11,6 +11,7 @@ import mageSound from '../assets/sounds/mage.mp3'; // Mage sound
 import kingSound from '../assets/sounds/king.mp3'; // King sound
 // import wildSound from '../assets/sounds/wild.mp3'; // Wild sound
 import bonusSound from '../assets/sounds/bonus.mp3'; // Bonus sound
+import spinSound from '../assets/sounds/spin.mp3'; // Spin sound
 
 // Sound player function
 export const playSound = (sound) => {
@@ -22,6 +23,7 @@ export const playSound = (sound) => {
 
 // Sound effects mapping
 export const sounds = {
+    spin: spinSound, // Sound for spinning the reels
     arrow: arrowTwang, // Sound for arrow
     archer: archerSwish, // Sound for archer
     silvercoin: coinSound, // Sound for coin
