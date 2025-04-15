@@ -46,9 +46,9 @@ const SlotMachine = () => {
         setIsWin(false);
         //higher spin sound
 
-        const audio = new Audio(sounds.spin);
-        audio.volume = 1;
-        audio.play();  // Play spin sound
+        
+        // audio.volume = 1; // This line is no longer needed
+        playSound(sounds.spin);  // Play spin sound
 
         // If free spins are available, do not deduct from the balance
         if (freeSpins > 0) {

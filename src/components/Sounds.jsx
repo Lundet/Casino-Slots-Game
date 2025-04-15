@@ -16,7 +16,13 @@ import spinSound from '../assets/sounds/spin.mp3'; // Spin sound
 // Sound player function
 export const playSound = (sound) => {
     const audio = new Audio(sound);
-    audio.volume = 0.1; // Set volume to 30%
+    //if sound spin its playing higer volume
+    if (sound === spinSound) {
+        audio.volume = 1; // Set volume to 100%
+    } else {
+        audio.volume = 0.3; // Set volume to 30%
+    }
+    
     audio.play();
 };
 
