@@ -155,7 +155,11 @@ body {
     transform: translateY(0);
   }
 }
-
+/* Add this to your SlotGame.css */
+.reel.highlighted {
+  border: 2px solid gold; /* Change border to gold */
+  box-shadow: 0 0 10px gold; /* Add a gold glow */
+}
 .rtp {
   margin-top: 15px;
   font-size: 1.1rem;

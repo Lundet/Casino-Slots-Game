@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/SlotGame.css';
 import SpinButton from './SpinButton';
 import BalanceDisplay from './BalanceDisplay';
 import { simulateSpins } from './Simulation';
-import { getRandomSymbol, isMatchOrWild } from './GameLogic';
-import { symbolPayouts } from './Symbols';  // Assuming this is where symbolPayouts is defined
+import { getRandomSymbol, isMatchOrWild, checkWin } from './GameLogic';
+import { symbolPayouts } from './Symbols';
 import { sounds, playSound } from './Sounds';
-import Reel from './Reel';  // Assuming this is where the Reel component is defined
-
+import Reel from './Reel';
 
 import arrow from '../assets/images/arrow.jpg';
 import silvercoin from '../assets/images/silvercoin.jpg';
@@ -27,7 +26,6 @@ const images = {
     bonus, wild, knight, mage, dragon, king,
 };
 
-
 const SlotMachine = () => {
     const [reels, setReels] = useState(Array(5).fill().map(getRandomSymbol));
     const [winMessage, setWinMessage] = useState('');
@@ -35,8 +33,17 @@ const SlotMachine = () => {
     const [isWin, setIsWin] = useState(false);
     const [balance, setBalance] = useState(100);
     const [bet, setBet] = useState(1);
-    const [freeSpins, setFreeSpins] = useState(0);  // Free spins counter
+    const [freeSpins, setFreeSpins] = useState(0);
     const [simulatedRTP, setSimulatedRTP] = useState(null);
+    const initialBetRef = useRef(1);
+    const [highlightedReels, setHighlightedReels] = useState([]); // State to store highlighted reels
+
+    // Function to set the bet, but only if not in free spins
+    const handleSetBet = (newBet) => {
+        if (freeSpins === 0) {
+            setBet(newBet);
+        }
+    };
 
     const spinReels = () => {
         if (balance < bet && freeSpins === 0) return;
@@ -44,17 +51,14 @@ const SlotMachine = () => {
         setIsSpinning(true);
         setWinMessage('');
         setIsWin(false);
-        //higher spin sound
-
-        
-        // audio.volume = 1; // This line is no longer needed
-        playSound(sounds.spin);  // Play spin sound
+        playSound(sounds.spin);
+        setHighlightedReels([]); // Clear highlighted reels on new spin
 
         // If free spins are available, do not deduct from the balance
         if (freeSpins > 0) {
-            setFreeSpins(prev => prev - 1);  // Deduct one free spin
+            setFreeSpins(prev => prev - 1);
         } else {
-            setBalance(prev => Math.max(prev - bet, 0));  // Deduct from balance when no free spins
+            setBalance(prev => Math.max(prev - bet, 0));
         }
 
         const spinInterval = setInterval(() => {
@@ -65,55 +69,17 @@ const SlotMachine = () => {
             clearInterval(spinInterval);
             const newReels = Array(5).fill().map(getRandomSymbol);
             setReels(newReels);
-            checkWin(newReels);
+            const winDetails = checkWin(newReels, bet, setBalance, setWinMessage, setIsWin, setFreeSpins);
             setIsSpinning(false);
+            if (winDetails && winDetails.winningReels) {
+                setHighlightedReels(winDetails.winningReels); // Highlight winning reels
+            }
         }, 3500);
-    };
 
-    const checkWin = (newReels) => {
-        let message = 'You lose!';
-        let win = false;
-        let totalPayout = 0;
-        let symbol = newReels[0];
-
-        // If the first symbol is wild, act as a joker
-        if (symbol === 'wild') {
-            symbol = newReels.slice(1).find(s => s !== 'wild') || 'wild';
+        // Store the initial bet when free spins are triggered
+        if (freeSpins === 0) {
+            initialBetRef.current = bet;
         }
-
-        let count = 0;
-        for (let i = 0; i < 5; i++) {
-            if (isMatchOrWild(newReels[i], symbol)) {
-                count++;
-            } else {
-                break;
-            }
-        }
-
-        if (count >= 2) {
-            totalPayout += symbolPayouts[symbol][count] * bet;
-            win = true;
-            message = `You win! ${count} ${symbol} symbols in a row! Payout: ${totalPayout}`;
-            // Play the winning sound for the symbol except for wild and bonus
-            if (symbol !== 'wild' && symbol !== 'bonus') {
-                if (sounds[symbol]) {
-                    playSound(sounds[symbol]);
-                }
-            }
-        }
-
-        const bonusCount = newReels.filter(s => s === 'bonus').length;
-        if (bonusCount >= 3) {
-            playSound(sounds['bonus']); // Play bonus sound
-            totalPayout += 0; // Free spins do not affect payout
-            win = true;
-            message = `You win 10 Free Spins! (${bonusCount} bonus symbols)`;
-            setFreeSpins(10); // Set the free spins to 10
-        }
-
-        setBalance(prev => Math.min(prev + totalPayout, 100000));
-        setWinMessage(win ? message : 'No win, try again!');
-        setIsWin(win);
     };
 
     const runSimulation = () => {
@@ -134,6 +100,7 @@ const SlotMachine = () => {
                         symbol={symbol}
                         isSpinning={isSpinning}
                         image={images[symbol]}
+                        highlighted={highlightedReels.includes(index)} // Pass highlighted prop
                     />
                 ))}
             </div>
@@ -143,14 +110,9 @@ const SlotMachine = () => {
                     onClick={spinReels}
                     disabled={isSpinning || (balance < bet && freeSpins === 0)}
                 />
-                <BalanceDisplay
-                    balance={balance}
-                    bet={bet}
-                    setBet={setBet}
-                    isSpinning={isSpinning || freeSpins > 0}
-                />
-
+                <BalanceDisplay balance={balance} bet={bet} setBet={handleSetBet} isSpinning={isSpinning} />
             </div>
+
             <button onClick={runSimulation} disabled={isSpinning}>
                 Simulate 1,000,000 Spins
             </button>
@@ -159,7 +121,6 @@ const SlotMachine = () => {
                     <p>Simulated RTP (1,000,000 spins): {simulatedRTP.toFixed(2)}%</p>
                 </div>
             )}
-
         </div>
     );
 };
