@@ -44,10 +44,7 @@ const SlotMachine = () => {
         setIsSpinning(true);
         setWinMessage('');
         setIsWin(false);
-        //higher spin sound
 
-
-        // audio.volume = 1; // This line is no longer needed
         playSound(sounds.spin);  // Play spin sound
 
         // If free spins are available, do not deduct from the balance
@@ -162,7 +159,13 @@ const SlotMachine = () => {
                     onClick={spinReels}
                     disabled={isSpinning || (balance < bet && freeSpins === 0)}
                 />
-                <BalanceDisplay balance={balance} bet={bet} setBet={setBet} />
+                <BalanceDisplay
+                    balance={balance}
+                    bet={bet}
+                    setBet={setBet}
+                    isSpinning={isSpinning || freeSpins > 0}
+                />
+
             </div>
 
             <button onClick={runSimulation} disabled={isSpinning}>
