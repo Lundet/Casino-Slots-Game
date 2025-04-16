@@ -44,7 +44,10 @@ const SlotMachine = () => {
         setIsSpinning(true);
         setWinMessage('');
         setIsWin(false);
+        //higher spin sound
 
+        
+        // audio.volume = 1; // This line is no longer needed
         playSound(sounds.spin);  // Play spin sound
 
         // If free spins are available, do not deduct from the balance
@@ -72,11 +75,12 @@ const SlotMachine = () => {
         let win = false;
         let totalPayout = 0;
         let symbol = newReels[0];
-        //if symbol is wild act like a joker
 
+        // If the first symbol is wild, act as a joker
         if (symbol === 'wild') {
             symbol = newReels.slice(1).find(s => s !== 'wild') || 'wild';
         }
+
         let count = 0;
         for (let i = 0; i < 5; i++) {
             if (isMatchOrWild(newReels[i], symbol)) {
@@ -93,38 +97,18 @@ const SlotMachine = () => {
             // Play the winning sound for the symbol except for wild and bonus
             if (symbol !== 'wild' && symbol !== 'bonus') {
                 if (sounds[symbol]) {
-                    playSound(sounds[symbol]);  // Pass the array of sounds corresponding to the symbol
+                    playSound(sounds[symbol]);
                 }
             }
         }
 
         const bonusCount = newReels.filter(s => s === 'bonus').length;
         if (bonusCount >= 3) {
-            playSound(sounds['bonus']);  // Play bonus sound
-            let freeSpinPayout = 0;
-            for (let i = 0; i < 10; i++) {  // Only run 10 free spins
-                const freeReels = Array(5).fill().map(getRandomSymbol);
-                let freeSymbol = freeReels[0];
-                if (freeSymbol === 'wild') {
-                    freeSymbol = freeReels.slice(1).find(s => s !== 'wild' && s !== 'bonus') || 'wild';
-                }
-                let freeCount = 0;
-                for (let j = 0; j < 5; j++) {
-                    if (isMatchOrWild(freeReels[j], freeSymbol)) {
-                        freeCount++;
-                    } else {
-                        break;
-                    }
-                }
-                if (freeCount >= 2) {
-                    freeSpinPayout += symbolPayouts[freeSymbol][freeCount] * bet;
-                    playSound(sounds[symbol]);  // Play sound for the winning symbol
-                }
-            }
-            totalPayout += freeSpinPayout;
+            playSound(sounds['bonus']); // Play bonus sound
+            totalPayout += 0; // Free spins do not affect payout
             win = true;
-            message = ` + 10 Free Spins! (${bonusCount} bonus symbols, +${freeSpinPayout} payout)`;
-            setFreeSpins(10);  // Set the free spins to 10
+            message = `You win 10 Free Spins! (${bonusCount} bonus symbols)`;
+            setFreeSpins(10); // Set the free spins to 10
         }
 
         setBalance(prev => Math.min(prev + totalPayout, 100000));
@@ -167,7 +151,6 @@ const SlotMachine = () => {
                 />
 
             </div>
-
             <button onClick={runSimulation} disabled={isSpinning}>
                 Simulate 1,000,000 Spins
             </button>
