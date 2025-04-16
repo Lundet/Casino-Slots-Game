@@ -2,101 +2,130 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh; /* Full height of the viewport */
+  height: 100vh;
   display: flex;
-  justify-content: center; /* Centers content horizontally */
-  align-items: center; /* Centers content vertically */
-  background-color: #f0f0f0; /* Optional: Set a background color */
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #0d1b2a, #1b263b); /* Dark blue gradient for a neon backdrop */
+  overflow: hidden;
 }
 
 .app {
-  background-color: #121212; /* Dark gray background */
-  color: #ffffff; /* White text for visibility */
-  height: 100vh; /* Full height of the viewport */
-  width: 100vw; /* Full width of the viewport */
+  background: #151a2b; /* Deep navy for a futuristic feel */
+  color: #d9e6ff; /* Light blue-gray text for readability */
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: Arial, sans-serif; /* Optional: Set a clean font */
-  box-sizing: border-box; /* Include padding in width/height calculations */
-  padding: 20px; /* Optional: Add padding around the content */
+  font-family: 'Montserrat', sans-serif; /* Bold, modern font */
+  box-sizing: border-box;
+  padding: 20px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Subtle inner shadow */
 }
 
 .slot-machine {
   text-align: center;
   font-size: 2rem;
-  width: 90%; /* Take up 90% of the available width */
-  max-width: 1200px; /* Optional: Limit the maximum width */
-  margin: 0 auto; /* Center the slot machine horizontally */
+  width: 95%;
+  max-width: 900px; /* Compact max-width for better focus */
+  margin: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #1e2a44; /* Slightly lighter navy panel */
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
 }
 
 .reels {
   display: flex;
   justify-content: center;
-  gap: 0; /* Removed gap to reduce whitespace */
-  margin-bottom: 30px;
+  gap: 12px; /* Slightly larger gap for clarity */
+  margin-bottom: 20px;
 }
 
 .reel {
-  margin-left: 2rem;
-  margin-top: 2rem;
-  border: 2px solid #000;
-  border-radius: 8px;
-  font-size: 3rem;
-  width: 200px; /* Adjust width to accommodate the images without extra space */
-  height: 200px; /* Adjust height to accommodate the images without extra space */
+  margin: 1rem 0.5rem;
+  border: 2px solid #00d4ff; /* Neon cyan border */
+  border-radius: 12px;
+  font-size: 3.2rem;
+  width: 160px; /* Compact reels for a tighter layout */
+  height: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f2f2f2;
-  overflow: hidden; /* Ensure images don't overflow */
+  background: linear-gradient(180deg, #e6f0ff, #b3c7ff); /* Soft blue-white gradient */
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+.reel:hover {
+  transform: scale(1.04); /* Subtle hover scale */
+  border-color: #ff00ff; /* Neon magenta on hover */
 }
 
 .symbol-image {
-  width: 100%; /* Ensure image takes the full width of the reel */
-  height: 100%; /* Ensure image takes the full height of the reel */
-  object-fit: cover; /* Ensure image fills the space without stretching */
-  display: block; /* Remove extra space below image */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3)); /* Enhanced shadow for symbols */
 }
 
-/* Layout for the controls (SpinButton and BalanceDisplay) */
+/* Controls layout */
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px; /* Adjust space between button and balance display */
+  gap: 18px;
   margin-top: 20px;
 }
 
 .balance-display {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
-  font-size: 1.2em;
-  padding: 10px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1.4rem;
+  padding: 10px 25px;
+  background: #2a3b66; /* Darker blue for contrast */
+  color: #00d4ff; /* Neon cyan text */
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.balance-display:hover {
+  background: #334c80; /* Slightly lighter on hover */
+  transform: translateY(-3px);
 }
 
 .spin-button {
-  padding: 10px 20px;
+  padding: 12px 35px;
   font-size: 1.5rem;
-  background-color: #007bff;
-  color: white;
+  background: linear-gradient(90deg, #ff00ff, #00d4ff); /* Neon magenta to cyan gradient */
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5); /* Neon glow */
+  transition: all 0.3s ease;
 }
 
 .spin-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-  transition: transform 0.3s;
+  background: linear-gradient(90deg, #e600e6, #00aacc);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
+  transform: translateY(-4px);
+}
+
+.spin-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
 }
 
 .symbol {
@@ -104,53 +133,103 @@ body {
 }
 
 .symbol.spinning {
-  animation: reel-spin 0.5s linear infinite;
+  animation: reel-spin 0.3s linear infinite;
 }
 
 @keyframes reel-spin {
   0% {
-      transform: rotateX(0deg);
-  }
-  50% {
-      transform: rotateX(360deg);
+    transform: rotateX(0deg);
   }
   100% {
-      transform: rotateX(720deg);
+    transform: rotateX(360deg);
   }
 }
 
 .reel {
-  perspective: 1000px;
+  perspective: 1500px; /* Increased for a more pronounced 3D effect */
 }
 
-
-
-/* Change border color on win */
-.reel.win {
-  border-color: gold; /* Gold border on win */
-}
-
-/* Styling for win message */
+/* Win/lose message styling */
 .win-message {
   margin-top: 20px;
-  font-size: 1.5rem;
-  color: green;
-  font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); /* Neon glow */
+  animation: fadeIn 0.6s ease-in;
+}
+
+.win-message.win {
+  color: #00ff00; /* Bright green for win */
 }
 
 .win-message.lose {
-  color: red;
+  color: #ff3333; /* Vivid red for lose */
 }
 
 @keyframes fadeIn {
   0% {
     opacity: 0;
+    transform: translateY(15px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .rtp {
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #99b3ff; /* Soft blue for secondary info */
+  opacity: 0.8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .slot-machine {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .reel {
+    width: 110px;
+    height: 110px;
+    font-size: 2.5rem;
+    margin: 0.8rem 0.3rem;
+  }
+
+  .spin-button {
+    padding: 10px 25px;
+    font-size: 1.3rem;
+  }
+
+  .balance-display {
+    font-size: 1.2rem;
+    padding: 8px 20px;
+  }
+
+  .win-message {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reel {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .spin-button {
+    padding: 8px 20px;
+    font-size: 1.1rem;
+  }
+
+  .balance-display {
+    font-size: 1rem;
+  }
+
+  .win-message {
+    font-size: 1.3rem;
+  }
 }
