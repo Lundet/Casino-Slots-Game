@@ -1,4 +1,3 @@
-/* slotgame.css */
 body {
   margin: 0;
   padding: 0;
@@ -6,66 +5,61 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, #0d1b2a, #1b263b); /* Dark blue gradient for a neon backdrop */
+  background: radial-gradient(circle, #0d1b2a, #1b263b);
   overflow: hidden;
 }
 
 .app {
-  background: #151a2b; /* Deep navy for a futuristic feel */
-  color: #d9e6ff; /* Light blue-gray text for readability */
+  background: #151a2b;
+  color: #d9e6ff;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Montserrat', sans-serif; /* Bold, modern font */
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   padding: 20px;
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Subtle inner shadow */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
 .slot-machine {
   text-align: center;
   font-size: 2rem;
   width: 95%;
-  max-width: 900px; /* Compact max-width for better focus */
+  max-width: 900px;
   margin: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #1e2a44; /* Slightly lighter navy panel */
+  background: #1e2a44;
   border-radius: 15px;
   padding: 25px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .reels {
   display: flex;
   justify-content: center;
-  gap: 12px; /* Slightly larger gap for clarity */
+  gap: 12px;
   margin-bottom: 20px;
 }
 
 .reel {
   margin: 1rem 0.5rem;
-  border: 2px solid #00d4ff; /* Neon cyan border */
+  border: 2px solid #00d4ff;
   border-radius: 12px;
   font-size: 3.2rem;
-  width: 160px; /* Compact reels for a tighter layout */
+  width: 160px;
   height: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #e6f0ff, #b3c7ff); /* Soft blue-white gradient */
+  background: linear-gradient(180deg, #e6f0ff, #b3c7ff);
   overflow: hidden;
   transition: transform 0.2s ease, border-color 0.3s ease;
-}
-
-.reel:hover {
-  transform: scale(1.04); /* Subtle hover scale */
-  border-color: #ff00ff; /* Neon magenta on hover */
 }
 
 .symbol-image {
@@ -73,10 +67,9 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3)); /* Enhanced shadow for symbols */
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
 }
 
-/* Controls layout */
 .controls {
   display: flex;
   justify-content: center;
@@ -90,22 +83,16 @@ body {
   text-align: center;
   font-size: 1.4rem;
   padding: 10px 25px;
-  background: #2a3b66; /* Darker blue for contrast */
-  color: #00d4ff; /* Neon cyan text */
+  background: #2a3b66;
+  color: #00d4ff;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.balance-display:hover {
-  background: #334c80; /* Slightly lighter on hover */
-  transform: translateY(-3px);
 }
 
 .spin-button {
   padding: 12px 35px;
   font-size: 1.5rem;
-  background: linear-gradient(90deg, #ff00ff, #00d4ff); /* Neon magenta to cyan gradient */
+  background: linear-gradient(90deg, #ff00ff, #00d4ff);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -113,14 +100,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5); /* Neon glow */
-  transition: all 0.3s ease;
-}
-
-.spin-button:hover {
-  background: linear-gradient(90deg, #e600e6, #00aacc);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
-  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
 }
 
 .spin-button:active {
@@ -146,24 +126,23 @@ body {
 }
 
 .reel {
-  perspective: 1500px; /* Increased for a more pronounced 3D effect */
+  perspective: 1500px;
 }
 
-/* Win/lose message styling */
 .win-message {
   margin-top: 20px;
   font-size: 1.7rem;
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); /* Neon glow */
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
   animation: fadeIn 0.6s ease-in;
 }
 
 .win-message.win {
-  color: #00ff00; /* Bright green for win */
+  color: #00ff00;
 }
 
 .win-message.lose {
-  color: #ff3333; /* Vivid red for lose */
+  color: #ff3333;
 }
 
 @keyframes fadeIn {
@@ -180,11 +159,10 @@ body {
 .rtp {
   margin-top: 15px;
   font-size: 1.1rem;
-  color: #99b3ff; /* Soft blue for secondary info */
+  color: #99b3ff;
   opacity: 0.8;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .slot-machine {
     width: 100%;
@@ -233,3 +211,4 @@ body {
     font-size: 1.3rem;
   }
 }
+

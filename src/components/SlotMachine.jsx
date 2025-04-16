@@ -46,7 +46,7 @@ const SlotMachine = () => {
         setIsWin(false);
         //higher spin sound
 
-        
+
         // audio.volume = 1; // This line is no longer needed
         playSound(sounds.spin);  // Play spin sound
 
@@ -158,7 +158,10 @@ const SlotMachine = () => {
             </div>
 
             <div className="controls">
-                <SpinButton onClick={spinReels} disabled={isSpinning || balance < bet && freeSpins === 0} />
+                <SpinButton
+                    onClick={spinReels}
+                    disabled={isSpinning || (balance < bet && freeSpins === 0)}
+                />
                 <BalanceDisplay balance={balance} bet={bet} setBet={setBet} />
             </div>
 
